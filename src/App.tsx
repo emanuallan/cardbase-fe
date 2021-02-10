@@ -6,12 +6,12 @@ import LoginPage from "main/login/store/LoginPage";
 
 export const App = () => (
 	<main>
-		<ChakraProvider theme={theme}>
-			<ColorModeSwitcher justifySelf="flex-end" />
-			<Switch>
-				<Route path="/login" component={LoginPage} />
-			</Switch>
-		</ChakraProvider>
+		{/* <ChakraProvider theme={theme}>
+			<ColorModeSwitcher justifySelf="flex-end" /> */}
+		<Switch>
+			<Route path="/login" component={LoginPage} />
+		</Switch>
+		{/* </ChakraProvider> */}
 	</main>
 );
 
