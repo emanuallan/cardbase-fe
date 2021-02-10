@@ -1,17 +1,16 @@
 import * as React from "react";
 import { ChakraProvider, theme } from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { ColorModeSwitcher } from "./shared-components/ColorModeSwitcher";
 import { Route, Switch } from "react-router-dom";
 import LoginPage from "main/login/store/LoginPage";
 
 export const App = () => (
 	<main>
-		{/* <ChakraProvider theme={theme}>
-			<ColorModeSwitcher justifySelf="flex-end" /> */}
-		<Switch>
-			<Route path="/login" component={LoginPage} />
-		</Switch>
-		{/* </ChakraProvider> */}
+		<ChakraProvider theme={theme}>
+			<Switch>
+				<Route path="/login" component={LoginPage} />
+			</Switch>
+		</ChakraProvider>
 	</main>
 );
 
