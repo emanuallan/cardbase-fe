@@ -19,35 +19,39 @@ import {
 import { LockIcon } from "@chakra-ui/icons";
 import InnerCenteredContainer from "shared-components/InnerCenteredContainer";
 import { FaUserCircle, FaTwitter, FaFacebook, FaGoogle } from "react-icons/fa";
+import Header from "shared-components/Header";
 
 function LoginPage() {
 	return (
-		<InnerCenteredContainer>
-			<Center minH="100vh" h="full">
-				<Flex borderRadius="3xl" boxShadow="2xl">
-					<Flex p="6" w="53%" justify="center" alignItems="center" flexDir="column">
-						<Heading color="gray.500" as="h1" size="lg" mt="1em">
-							Login
-						</Heading>
-						<LoginForm />
-						<Text color="gray.300">
-							© 2021 CardBase Inc. • For Traders • About Us • Privacy Policy • Terms of Service
-						</Text>
+		<>
+			<Header />
+			<InnerCenteredContainer>
+				<Center minH="100vh" h="full">
+					<Flex borderRadius="3xl" boxShadow="2xl">
+						<Flex p="6" w="53%" justify="center" alignItems="center" flexDir="column">
+							<Heading color="gray.500" as="h1" size="lg" mt="1em">
+								Login
+							</Heading>
+							<LoginForm />
+							<Text color="gray.300">
+								© 2021 CardBase Inc. • For Traders • About Us • Privacy Policy • Terms of Service
+							</Text>
+						</Flex>
+						<Box w="47%">
+							<Image
+								borderTopRightRadius="3xl"
+								borderBottomRightRadius="2xl"
+								h="50em"
+								w="full"
+								fit="cover"
+								src="https://images.unsplash.com/photo-1607310073276-9f48dec47340?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+								alt="Sport Cards"
+							/>
+						</Box>
 					</Flex>
-					<Box w="47%" bg="rgba(255,0,0,1)">
-						<Image
-							borderTopRightRadius="3xl"
-							borderBottomRightRadius="2xl"
-							h="50em"
-							w="full"
-							fit="cover"
-							src="https://images.unsplash.com/photo-1607310073276-9f48dec47340?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
-							alt="Sport Cards"
-						/>
-					</Box>
-				</Flex>
-			</Center>
-		</InnerCenteredContainer>
+				</Center>
+			</InnerCenteredContainer>
+		</>
 	);
 }
 
@@ -63,7 +67,7 @@ function LoginForm() {
 				<InputGroup size="lg">
 					<InputLeftElement
 						pointerEvents="none"
-						children={<Icon as={FaUserCircle} color="gray.300" fontSize="xl" mx="10px" />}
+						children={<Icon as={FaUserCircle} color="gray.300" fontSize="xl" />}
 					/>
 					<Input placeholder="Username" value={user} onChange={({ target }) => setUser(target.value)} />
 				</InputGroup>
