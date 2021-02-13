@@ -26,20 +26,26 @@ export interface CardStore {
 
 export interface SportCard extends Card {
 	id: string;
-	cardNumber: number; //card number from respective collection
-	name: string;
 	organization: League;
-	publisher: Publisher;
+	publisher: string;
+	cardNumber: number; //card number from respective collection
+	serialNumber: number; // e.g. if 6/250 -> serialNumber: 6
+	condition: string;
+	name: string;
+	printRun?: string; //numbered, unumbered 1, 2-30, 31-100, 100+
 	team?: Team;
 	athlete?: Athlete;
 	league?: League;
 	sport?: Sport;
 	grade?: Grade;
-	condition: string;
-	year: number;
-	collectionName: string;
-	printRun: string; //numbered, unumbered 1, 2-30, 31-100, 100+
+	year?: number;
+	collectionName?: string;
 	autograph?: Autograph;
+	isRookie?: boolean;
+	patchCard?: boolean;
+	jerseyCard?: boolean;
+	printingPlate?: string; //yellow magenta cyan black 1/1 for ea color
+	isInsert?: boolean;
 }
 
 export interface Grade {
@@ -59,6 +65,7 @@ export interface Autograph {
 	isAutographed: boolean;
 	isAutographedAuthenticated: boolean;
 	autographAuthenticatedBy: string;
+	surface: string; // hard-signed or sticker-signed or cut-signed http://www.upperdeck.com/Collectors-Zone/trading-cards-explained.aspx
 }
 
 //https://www.espn.com/apis/devcenter/docs/teams.html#sports-object
