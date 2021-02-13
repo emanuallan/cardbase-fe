@@ -29,7 +29,7 @@ export interface SportCard extends Card {
 	organization: League;
 	publisher: string;
 	cardNumber: number; //card number from respective collection
-	serialNumber: number; // e.g. if 6/250 -> serialNumber: 6
+	serialNumber?: number; // e.g. if 6/250 -> serialNumber: 6
 	condition: string;
 	name: string;
 	printRun?: string; //numbered, unumbered 1, 2-30, 31-100, 100+
@@ -41,10 +41,10 @@ export interface SportCard extends Card {
 	year?: number;
 	collectionName?: string;
 	autograph?: Autograph;
+	printingPlate?: string;
 	isRookie?: boolean;
-	patchCard?: boolean;
-	jerseyCard?: boolean;
-	printingPlate?: string; //yellow magenta cyan black 1/1 for ea color
+	isPatchCard?: boolean;
+	isJerseyCard?: boolean; //yellow magenta cyan black 1/1 for ea color
 	isInsert?: boolean;
 }
 
