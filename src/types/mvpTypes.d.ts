@@ -27,7 +27,7 @@ export interface CardStore {
 export interface SportCard extends Card {
 	id: string;
 	cardNumber: number; //card number from respective collection
-	name: string; // will be "sport" for mvp
+	name: string;
 	organization: League;
 	publisher: Publisher;
 	team?: Team;
