@@ -21,6 +21,9 @@ import InnerCenteredContainer from "shared-components/InnerCenteredContainer";
 import { FaUserCircle, FaTwitter, FaFacebook, FaGoogle } from "react-icons/fa";
 import Header from "shared-components/Header";
 
+const isProduction = process.env.NODE_ENV === 'production' // production flag
+const URI = isProduction ? 'https://cardbase.com' : 'http://localhost:8000'
+
 function LoginPage() {
 	return (
 		<>
@@ -60,6 +63,40 @@ function LoginForm() {
 	const [user, setUser] = useState("");
 	const [password, setPassword] = useState("");
 	const handleClick = () => setShow(!show);
+    const clearInput = () => { setPassword(""); setUser("");}
+    const redirect = (path: string) => { return }  // redirects to profile page.
+
+    /**
+     * handleLogIn attempts to authorize user with the provided credentials.
+     */
+    function handleLogIn(event) {
+        event.preventDefault()
+        const payload = {
+            username: user,
+            password: password,
+        }
+
+        fetch(`${URI}/account/login/`, { // end-slash is required.
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+          .then(res => res.json())
+          .then(res => { 
+              if (res.status >= 400) {
+                  // handle errors.
+                  return
+              }
+              // assign token to localstorage.
+              console.log('Token:', res); 
+              redirect('profile/'); 
+          })
+          .catch(err => console.log("error: ", err))
+
+        clearInput();
+    }
 
 	return (
 		<Box w="25em" margin="auto auto">
@@ -88,7 +125,7 @@ function LoginForm() {
 			</Stack>
 			<Flex justify="space-between" align="center" mt="24px">
 				<Checkbox defaultIsChecked>Remember me</Checkbox>
-				<Button colorScheme="teal" size="lg">
+				<Button colorScheme="teal" size="lg" onClick={handleLogIn}>
 					Login
 				</Button>
 			</Flex>

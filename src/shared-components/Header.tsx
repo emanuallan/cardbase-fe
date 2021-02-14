@@ -26,7 +26,7 @@ function Header() {
 				<Button
 					size="lg"
 					bg="yellow.300"
-					onClick={() => console.log("hi")}
+					onClick={() => { console.log("hi"); console.log("GT Sucks"); }}
 					mr="8"
 					leftIcon={<Icon as={FaHandsHelping} color="gray.500" w="auto" h="1.8rem" />}
 				>
