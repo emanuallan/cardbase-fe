@@ -3,12 +3,14 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./shared-components/ColorModeSwitcher";
 import { Route, Switch } from "react-router-dom";
 import LoginPage from "main/login/store/LoginPage";
+import RegisterPage from "main/register/RegisterPage";
 
 export const App = () => (
 	<main>
 		<ChakraProvider theme={theme}>
 			<Switch>
 				<Route path="/login" component={LoginPage} />
+				<Route path="/register" component={RegisterPage} />
 			</Switch>
 		</ChakraProvider>
 	</main>

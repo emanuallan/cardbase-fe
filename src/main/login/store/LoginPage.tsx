@@ -57,9 +57,12 @@ function LoginPage() {
 
 function LoginForm() {
 	const [show, setShow] = useState(false);
-	const [user, setUser] = useState("");
+
+	// USER INPUT
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const handleClick = () => setShow(!show);
+
+	const handleShow = () => setShow(!show);
 
 	return (
 		<Box w="25em" margin="auto auto">
@@ -69,7 +72,11 @@ function LoginForm() {
 						pointerEvents="none"
 						children={<Icon as={FaUserCircle} color="gray.300" fontSize="xl" />}
 					/>
-					<Input placeholder="Username" value={user} onChange={({ target }) => setUser(target.value)} />
+					<Input
+						placeholder="Username"
+						value={username}
+						onChange={({ target }) => setUsername(target.value)}
+					/>
 				</InputGroup>
 				<InputGroup size="lg">
 					<InputLeftElement pointerEvents="none" children={<LockIcon color="gray.300" />} />
@@ -80,7 +87,7 @@ function LoginForm() {
 						placeholder="Password"
 					/>
 					<InputRightElement width="4.5rem">
-						<Button h="1.75rem" size="sm" onClick={handleClick}>
+						<Button h="1.75rem" size="sm" onClick={handleShow}>
 							{show ? "Hide" : "Show"}
 						</Button>
 					</InputRightElement>
