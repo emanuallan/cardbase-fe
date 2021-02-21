@@ -1,39 +1,14 @@
-import React, { useState } from "react";
-import {
-	Tabs,
-	Tab,
-	TabList,
-	TabPanel,
-	TabPanels,
-	Center,
-	Heading,
-	Flex,
-	Text,
-	FormControl,
-	FormLabel,
-	FormErrorMessage,
-	FormHelperText,
-	Input,
-	InputGroup,
-	Button,
-	InputRightElement,
-} from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Tabs, Tab, TabList, TabPanel, TabPanels, Center, Heading, Flex, Text, Button } from "@chakra-ui/react";
 import Header from "shared-components/Header";
 import InnerCenteredContainer from "shared-components/InnerCenteredContainer";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
+import TeamSelector from "shared-components/TeamSelector";
+import RegisterForm from "./components/RegisterForm";
 
 export default function Example() {
 	const [tabIndex, setTabIndex] = useState(0);
-	const [show, setShow] = useState(false);
 
-	// USER INPUT
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-
-	const handleShow = () => setShow(!show);
 	const handlePanel = (bool) => {
 		if (bool) {
 			setTabIndex(tabIndex + 1);
@@ -48,7 +23,8 @@ export default function Example() {
 			<InnerCenteredContainer>
 				<Center minH="100vh" h="full">
 					<Tabs
-						minH="52em"
+						isLazy
+						minH="60em"
 						boxShadow="2xl"
 						borderRadius="3xl"
 						isFitted
@@ -103,7 +79,7 @@ export default function Example() {
 									3
 								</Text>
 								<Text fontSize="xl" fontWeight="semibold">
-									Add Payment Details
+									Set Targets
 								</Text>
 							</Tab>
 							<Tab p="6">
@@ -133,73 +109,44 @@ export default function Example() {
 										Start by creating your account
 									</Heading>
 								</Flex>
-								<Flex mt="16" justify="space-between">
-									<FormControl id="first-name" isRequired maxW="23em">
-										<FormLabel>First name</FormLabel>
-										<Input
-											placeholder="First name"
-											size="lg"
-											value={firstName}
-											onChange={({ target }) => setFirstName(target.value)}
-										/>
-									</FormControl>
-									<FormControl id="last-name" isRequired maxW="23em">
-										<FormLabel>Last name</FormLabel>
-										<Input
-											placeholder="Last name"
-											size="lg"
-											value={lastName}
-											onChange={({ target }) => setLastName(target.value)}
-										/>
-									</FormControl>
-								</Flex>
-								<Flex mt="8">
-									<FormControl id="email" isRequired>
-										<FormLabel>Email address</FormLabel>
-										<Input
-											type="email"
-											placeholder="Email"
-											value={email}
-											onChange={({ target }) => setEmail(target.value)}
-										/>
-										<FormHelperText>We'll never share your email.</FormHelperText>
-									</FormControl>
-								</Flex>
-								<Flex mt="16" justify="space-between">
-									<FormControl id="username" isRequired maxW="23em">
-										<FormLabel>Username</FormLabel>
-										<Input
-											placeholder="Username"
-											size="lg"
-											value={username}
-											onChange={({ target }) => setUsername(target.value)}
-										/>
-									</FormControl>
-									<FormControl id="password" isRequired maxW="23em">
-										<FormLabel>Password</FormLabel>
-										<InputGroup size="lg">
-											<Input
-												type={show ? "text" : "password"}
-												value={password}
-												onChange={({ target }) => setPassword(target.value)}
-												placeholder="Password"
-											/>
-											<InputRightElement width="4.5rem">
-												<Button h="1.75rem" size="sm" onClick={handleShow}>
-													{show ? "Hide" : "Show"}
-												</Button>
-											</InputRightElement>
-										</InputGroup>
-									</FormControl>
-								</Flex>
+								<RegisterForm />
 								<Flex mt="24" justifyContent="flex-end">
 									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(true)}>
 										<ArrowForwardIcon mx="1" h="6" w="6" />
 									</Button>
 								</Flex>
 							</TabPanel>
-							<TabPanel>Are 1, 2, 3</TabPanel>
-							<TabPanel>Red, yellow and blue.</TabPanel>
+							<TabPanel>
+								<TeamSelector />
+								<Flex mt="24" justifyContent="space-between">
+									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(false)}>
+										<ArrowBackIcon mx="1" h="6" w="6" />
+									</Button>
+									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(true)}>
+										<ArrowForwardIcon mx="1" h="6" w="6" />
+									</Button>
+								</Flex>
+							</TabPanel>
+							<TabPanel>
+								<Flex mt="24" justifyContent="space-between">
+									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(false)}>
+										<ArrowBackIcon mx="1" h="6" w="6" />
+									</Button>
+									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(true)}>
+										<ArrowForwardIcon mx="1" h="6" w="6" />
+									</Button>
+								</Flex>
+							</TabPanel>
+							<TabPanel>
+								<Flex mt="24" justifyContent="space-between">
+									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(false)}>
+										<ArrowBackIcon mx="1" h="6" w="6" />
+									</Button>
+									<Button colorScheme="teal" size="lg" onClick={() => handlePanel(true)}>
+										<ArrowForwardIcon mx="1" h="6" w="6" />
+									</Button>
+								</Flex>
+							</TabPanel>
 						</TabPanels>
 					</Tabs>
 				</Center>
