@@ -24,7 +24,7 @@ function RegisterForm() {
 
 	return (
 		<>
-			<Flex mt="16" justify="space-between">
+			<Flex justify="space-between">
 				<FormControl id="first-name" isRequired maxW="23em">
 					<FormLabel>First name</FormLabel>
 					<Input

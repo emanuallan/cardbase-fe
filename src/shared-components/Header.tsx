@@ -23,7 +23,7 @@ function Header() {
 				</InputGroup>
 			</Flex>
 			<Flex justify="flex-end" alignItems="center" mt="4" mr="8">
-				<Button
+				{/* <Button
 					size="lg"
 					bg="yellow.300"
 					onClick={() => console.log("hi")}
@@ -31,7 +31,7 @@ function Header() {
 					leftIcon={<Icon as={FaHandsHelping} color="gray.500" w="auto" h="1.8rem" />}
 				>
 					Trade
-				</Button>
+				</Button> */}
 				<Icon as={FaShoppingCart} color="gray.500" w="auto" h="1.8rem" />
 			</Flex>
 		</SimpleGrid>

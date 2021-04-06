@@ -1,13 +1,13 @@
 import React from "react";
-import { Box, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
 
 function InnerCenteredContainer({ children }) {
 	const [isLargerThan1700] = useMediaQuery("(min-width: 1700px)");
 
 	return (
-		<Box maxW={"80em"} margin={"0 auto"}>
-			{children}
-		</Box>
+		<Flex w="full" justifyContent="center">
+			<Box maxW={"80em"}>{children}</Box>
+		</Flex>
 	);
 }
 

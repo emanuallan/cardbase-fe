@@ -1,43 +1,23 @@
 import React, { useState, FC } from "react";
 import { NFL_HIERARCHY } from "api/NFLHIERARCHY";
-import {
-	Tabs,
-	Tab,
-	TabList,
-	TabPanel,
-	TabPanels,
-	Center,
-	Heading,
-	Flex,
-	Text,
-	FormControl,
-	FormLabel,
-	FormErrorMessage,
-	FormHelperText,
-	Input,
-	InputGroup,
-	Button,
-	InputRightElement,
-	Box,
-	Image,
-	HStack,
-	VStack,
-} from "@chakra-ui/react";
+import { Flex, Text, Box, Image, HStack } from "@chakra-ui/react";
 
 function TeamSelector() {
 	console.log(NFL_HIERARCHY);
 	return (
 		<Box>
-			<HStack mb="12" maxW="60em">
-				{NFL_HIERARCHY.conferences[0].divisions.map((division) => (
-					<DivisionGroup key={division.id} division={division.name} divisionTeams={division.teams} />
-				))}
-			</HStack>
-			<HStack maxW="60em">
-				{NFL_HIERARCHY.conferences[1].divisions.map((division) => (
-					<DivisionGroup key={division.id} division={division.name} divisionTeams={division.teams} />
-				))}
-			</HStack>
+			<Box mx="auto" maxW="max-content">
+				<HStack mb="12">
+					{NFL_HIERARCHY.conferences[0].divisions.map((division) => (
+						<DivisionGroup key={division.id} division={division.name} divisionTeams={division.teams} />
+					))}
+				</HStack>
+				<HStack>
+					{NFL_HIERARCHY.conferences[1].divisions.map((division) => (
+						<DivisionGroup key={division.id} division={division.name} divisionTeams={division.teams} />
+					))}
+				</HStack>
+			</Box>
 		</Box>
 	);
 }
@@ -88,7 +68,7 @@ const TeamButton: FC<TeamButtonProps> = ({ image, name, primaryColor = "black", 
 			bg={selected ? primaryColor : "white"}
 			p="2"
 			alignItems="center"
-			style={{ maxWidth: "250px" }}
+			w="14.4em"
 		>
 			<Image src={image} w="auto" h="35px" />{" "}
 			<Text ml="2" fontWeight={hovered || selected ? "bold" : "medium"}>
