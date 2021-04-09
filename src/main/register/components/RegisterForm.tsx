@@ -11,14 +11,18 @@ import {
 	InputRightElement,
 } from "@chakra-ui/react";
 
-function RegisterForm() {
-	// USER INPUT
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-
+function RegisterForm({
+	firstName,
+	setFirstName,
+	lastName,
+	setLastName,
+	email,
+	setEmail,
+	username,
+	setUsername,
+	password,
+	setPassword,
+}) {
 	const [show, setShow] = useState(false);
 	const handleShow = () => setShow(!show);
 

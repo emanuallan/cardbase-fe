@@ -19,16 +19,57 @@ import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import TeamSelector from "shared-components/TeamSelector";
 import RegisterForm from "./components/RegisterForm";
 import TeamsAccordian from "shared-components/TeamsAccordian";
+import UserPool from "UserPool";
+import { CognitoUserAttribute, ICognitoUserAttributeData } from "amazon-cognito-identity-js";
 
 export default function Example() {
+	//TAB MANAGER
 	const [tabIndex, setTabIndex] = useState(0);
 
 	const handlePanel = (bool) => {
 		if (bool) {
+			if (tabIndex + 1 === 1) {
+				handleSubmit();
+				return;
+			}
+
 			setTabIndex(tabIndex + 1);
 		} else {
 			setTabIndex(tabIndex - 1);
 		}
+	};
+
+	//USER INPUT
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleSubmit = () => {
+		const attributes = [
+			{
+				Name: "email",
+				Value: email,
+			},
+			{
+				Name: "custom:firstName",
+				Value: firstName,
+			},
+			{
+				Name: "custom:lastName",
+				Value: lastName,
+			},
+		];
+
+		const attributeList: CognitoUserAttribute[] = [];
+
+		attributes.forEach((att) => attributeList.push(new CognitoUserAttribute(att as ICognitoUserAttributeData)));
+
+		UserPool.signUp(username, password, attributeList, [], (err, data) => {
+			if (err) console.error(err);
+			console.log(data);
+		});
 	};
 
 	return (
@@ -107,7 +148,18 @@ export default function Example() {
 									Start by creating your account
 								</Heading>
 							</Flex>
-							<RegisterForm />
+							<RegisterForm
+								firstName={firstName}
+								setFirstName={setFirstName}
+								lastName={lastName}
+								setLastName={setLastName}
+								email={email}
+								setEmail={setEmail}
+								username={username}
+								setUsername={setUsername}
+								password={password}
+								setPassword={setPassword}
+							/>
 							<Flex mt="24" justifyContent="flex-end">
 								<Button colorScheme="teal" size="lg" onClick={() => handlePanel(true)}>
 									<ArrowForwardIcon mx="1" h="6" w="6" />

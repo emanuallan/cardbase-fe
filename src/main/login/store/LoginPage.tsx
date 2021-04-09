@@ -21,6 +21,8 @@ import { LockIcon } from "@chakra-ui/icons";
 import InnerCenteredContainer from "shared-components/InnerCenteredContainer";
 import { FaUserCircle, FaTwitter, FaFacebook, FaGoogle } from "react-icons/fa";
 import Header from "shared-components/Header";
+import UserPool from "UserPool";
+import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 
 function LoginPage() {
 	return (
@@ -62,6 +64,30 @@ function LoginForm() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
+	const handleLogin = () => {
+		const user = new CognitoUser({
+			Username: username,
+			Pool: UserPool,
+		});
+
+		const authDetails = new AuthenticationDetails({
+			Username: username,
+			Password: password,
+		});
+
+		user.authenticateUser(authDetails, {
+			onSuccess: (data) => {
+				console.log("onSuccess", data);
+			},
+			onFailure: (err) => {
+				console.error("onFailure", err);
+			},
+			newPasswordRequired: (data) => {
+				console.log("NPR", data);
+			},
+		});
+	};
+
 	const handleShow = () => setShow(!show);
 
 	return (
@@ -95,7 +121,7 @@ function LoginForm() {
 			</Stack>
 			<Flex justify="space-between" align="center" mt="24px">
 				<Checkbox defaultIsChecked>Remember me</Checkbox>
-				<Button colorScheme="teal" size="lg">
+				<Button colorScheme="teal" size="lg" onClick={handleLogin}>
 					Login
 				</Button>
 			</Flex>
@@ -108,13 +134,13 @@ function LoginForm() {
 			<Box h="2px" bg="gray.300" my="48px" />
 			<Stack spacing={6}>
 				<Button size="lg" colorScheme="facebook" leftIcon={<FaFacebook />}>
-					Login with Facebook
+					Continue with Facebook
 				</Button>
 				<Button size="lg" colorScheme="twitter" leftIcon={<FaTwitter />}>
-					Login with Twitter
+					Continue with Twitter
 				</Button>
 				<Button size="lg" bg="#F24436" color="white" _hover={{ bg: "#C32E24" }} leftIcon={<FaGoogle />}>
-					Login with Google
+					Continue with Google
 				</Button>
 			</Stack>
 		</Box>
