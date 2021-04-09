@@ -125,7 +125,7 @@ export default function Example() {
 							</Flex>
 							<TeamsAccordian />
 							<Flex mt="24" mb="16" justifyContent="space-between" px="5em">
-								<Button colorScheme="teal" size="lg" onClick={() => handlePanel(false)}>
+								<Button size="lg" onClick={() => handlePanel(false)}>
 									<ArrowBackIcon mx="1" h="6" w="6" />
 								</Button>
 								<Button colorScheme="teal" size="lg" onClick={() => handlePanel(true)}>
