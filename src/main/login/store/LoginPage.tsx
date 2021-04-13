@@ -64,13 +64,13 @@ function LoginForm() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-	const facebookLogin = () => {
+	const handleFacebookLogin = () => {
 		window.location.href = `https://cardbasedev.auth.us-east-2.amazoncognito.com/oauth2/authorize?redirect_uri=${encodeURI(
 			"http://localhost:3000/"
 		)}&response_type=token&client_id=352ksv0tbbdm2g7tlqv57adpj1&identity_provider=Facebook`;
 	};
 
-	const handleLogin = () => {
+	const handleNativeLogin = () => {
 		const user = new CognitoUser({
 			Username: username,
 			Pool: UserPool,
@@ -127,7 +127,7 @@ function LoginForm() {
 			</Stack>
 			<Flex justify="space-between" align="center" mt="24px">
 				<Checkbox defaultIsChecked>Remember me</Checkbox>
-				<Button colorScheme="teal" size="lg" onClick={handleLogin}>
+				<Button colorScheme="teal" size="lg" onClick={handleNativeLogin}>
 					Login
 				</Button>
 			</Flex>
@@ -139,7 +139,7 @@ function LoginForm() {
 			</Flex>
 			<Box h="2px" bg="gray.300" my="48px" />
 			<Stack spacing={6}>
-				<Button size="lg" colorScheme="facebook" leftIcon={<FaFacebook />} onClick={facebookLogin}>
+				<Button size="lg" colorScheme="facebook" leftIcon={<FaFacebook />} onClick={handleFacebookLogin}>
 					Continue with Facebook
 				</Button>
 				<Button size="lg" colorScheme="twitter" leftIcon={<FaTwitter />}>
