@@ -23,6 +23,7 @@ import { FaUserCircle, FaTwitter, FaFacebook, FaGoogle } from "react-icons/fa";
 import Header from "shared-components/Header";
 import UserPool from "UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+import Cookies from "js-cookie";
 
 function LoginPage() {
 	return (
@@ -83,10 +84,13 @@ function LoginForm() {
 
 		user.authenticateUser(authDetails, {
 			onSuccess: (data) => {
+				Cookies.set("accessToken", data.getAccessToken().getJwtToken());
+				Cookies.set("refreshToken", data.getRefreshToken().getToken());
 				console.log("onSuccess", data);
 			},
 			onFailure: (err) => {
 				console.error("onFailure", err);
+				console.log(Cookies.get());
 			},
 			newPasswordRequired: (data) => {
 				console.log("NPR", data);
